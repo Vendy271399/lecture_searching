@@ -18,6 +18,7 @@ def main():
 
 
 if __name__ == "__main__":
-    data = read_data("sequential.json", "unordered_numbers")
-    print(data)
+    sequential_data = read_data("sequential.json", "unordered_numbers")
+    print(sequential_data)
+
 
