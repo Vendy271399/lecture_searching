@@ -14,11 +14,12 @@ def read_data(file_name, field):
 
 
 def main():
-    pass
+    sequential_data = read_data("sequential.json", "unordered_numbers")
+    print(sequential_data)
 
 
 if __name__ == "__main__":
-    sequential_data = read_data("sequential.json", "unordered_numbers")
-    print(sequential_data)
+    result = main()
+
 
 
