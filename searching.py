@@ -1,6 +1,7 @@
 
 import json
 import time
+import matplotlib.pyplot as plt
 
 from generators import unordered_sequence
 from generators import ordered_sequence
@@ -52,7 +53,6 @@ def binary_search(sequential_data, find_number):
         elif sequential_data[middle] > find_number:
             sequential_data = sequential_data[:middle]
 
-
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
@@ -61,23 +61,35 @@ def main():
     print(linear)
 
 
+linear_times = []
+binary_times = []
+sizes = [100, 500]
+
+sequence_1 = unordered_sequence(max_len=100)
+sequence_2 = unordered_sequence(max_len=500)
 
 
-    sequence_1 = unordered_sequence(max_len=100)
-    linear_search_sequence = linear_search(sequence_1, 21)
-    binary_search_sequence = binary_search(sequence_1, 21)
+start_1 = time.perf_counter()
+linear_search_sequence = linear_search(sequence_1, 21)
+end_1 = time.perf_counter()
+duration_1 = end_1 - start_1
 
-    start = time.perf_counter()
-    target = 78
+linear_times.append(duration_1)
 
-    for number in sequence_1:
-        if number == target:
-            break
+start = time.perf_counter()
+binary_search_sequence = binary_search(sequence_1, 21)
+end = time.perf_counter()
+duration_2 = end - start
 
-    end = time.perf_counter()
+binary_times.append(duration_2)
 
-    duration = end - start
 
+plt.plot(sizes, linear_times)
+
+plt.xlabel("Velikost vstupu")
+plt.ylabel("Čas [s]")
+plt.title("Ukázkový graf měření")
+plt.show()
 
 
 if __name__ == "__main__":
