@@ -1,5 +1,11 @@
 
 import json
+import time
+
+from generators import unordered_sequence
+from generators import ordered_sequence
+from generators import dna_sequence
+
 
 def read_data(file_name, field):
 
@@ -47,8 +53,6 @@ def binary_search(sequential_data, find_number):
             sequential_data = sequential_data[:middle]
 
 
-
-
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
@@ -57,9 +61,28 @@ def main():
     print(linear)
 
 
+
+
+    sequence_1 = unordered_sequence(max_len=100)
+    linear_search_sequence = linear_search(sequence_1, 21)
+    binary_search_sequence = binary_search(sequence_1, 21)
+
+    start = time.perf_counter()
+    target = 78
+
+    for number in sequence_1:
+        if number == target:
+            break
+
+    end = time.perf_counter()
+
+    duration = end - start
+
+
+
 if __name__ == "__main__":
-    result = main()
     print(main())
+
 
 
 
